@@ -7,7 +7,8 @@ from django.utils import timezone
 from django.template.defaultfilters import slugify
 
 class Category(models.Model):
-    name = models.CharField(max_length = 128, unique = True)
+    NAME_MAX_LENGTH = 128
+    name = models.CharField(max_length = NAME_MAX_LENGTH, unique = True)
     #Each model's name must be unique
     views = models.IntegerField(default = 0)
     likes = models.IntegerField(default = 0)
@@ -26,7 +27,8 @@ class Category(models.Model):
 class Page(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE)
     #foreign key is used to create one-to-many relatioships
-    title = models.CharField(max_length = 128)
+    TITLE_MAX_LENGTH = 128
+    title = models.CharField(max_length = TITLE_MAX_LENGTH)
     url = models.URLField()
     views = models.IntegerField(default = 0)
     likes = models.IntegerField(default = 0)
